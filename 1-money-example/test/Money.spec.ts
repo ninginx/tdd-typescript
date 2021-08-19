@@ -43,6 +43,10 @@ describe('多国通貨対応', () => {
     expect(new Franc(5).equals(new Franc(6))).toBe(false);
   });
 
+  it('test franc & dollar equality false', () => {
+    expect(new Franc(5).equals(new Dollar(5))).toBe(false);
+  });
+
   it('test Fran Multiplication', () => {
     const fiveFran = new Franc(5);
     expect(fiveFran.times(2).equals(new Franc(10))).toBe(true);

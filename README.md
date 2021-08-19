@@ -59,3 +59,22 @@
 * [ ] DollarとFrancの重複
 * [x] equalsの一般化
 * [ ] timesの一般化
+
+### 第7章 疑念をテストに翻訳する
+
+* [ ] $5 + 10CHF = $10
+* [x] $5 * 2 = $10
+* [x] amountをprivateにする
+* [x] Dollar sideeffect
+* [ ] Moneyの丸め処理
+* [x] *equals()*
+* [ ] hashCode
+* [ ] nullとの等価性能比較
+* [ ] 他のオブジェクトとの等価性能比較
+* [x] 5CHF * 2 = 10CHF
+* [ ] DollarとFrancの重複
+* [x] equalsの一般化
+* [ ] timesの一般化
+* [ ] **FrancとDollarを比較する**
+
+

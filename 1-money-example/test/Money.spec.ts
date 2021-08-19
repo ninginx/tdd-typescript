@@ -15,7 +15,9 @@ describe('多国通貨対応', () => {
   // Dollarの副作用どうするか？
   it('test multiplication', () => {
     const fiveDollar = new Dollar(5);
-    fiveDollar.times(2);
-    expect(fiveDollar.amount).toEqual(10);
+    let product = fiveDollar.times(2);
+    expect(product.amount).toEqual(10);
+    product = fiveDollar.times(3);
+    expect(product.amount).toEqual(15);
   });
 });

@@ -3,9 +3,8 @@ class Money {
   constructor(amount: number) {
     this.amount = amount;
   }
-  equals = (obj: Money): boolean => {
-    const money = obj;
-    return this.amount == money.amount;
+  equals = ({ amount, constructor }: Money): boolean => {
+    return this.amount === amount && this.constructor.name === constructor.name;
   };
 }
 

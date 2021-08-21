@@ -7,11 +7,11 @@ export abstract class Money {
   }
 
   static dollar = (amount: number): Money => {
-    return new Dollar(amount);
+    return new Dollar(amount,'USD');
   };
 
   static franc = (amount: number): Money => {
-    return new Franc(amount);
+    return new Franc(amount,'CHF');
   };
   equals = ({ amount, constructor }: Money): boolean => {
     return this.amount === amount && this.constructor.name === constructor.name;
@@ -25,19 +25,19 @@ export abstract class Money {
 }
 
 export class Dollar extends Money {
-  constructor(amount: number) {
-    super(amount, 'USD');
+  constructor(amount: number,currency: string) {
+    super(amount, currency);
   }
   times = (multiplier: number): Dollar => {
-    return new Dollar(multiplier * this.amount);
+    return Money.dollar(this.amount*multiplier);
   };
 }
 
 export class Franc extends Money {
-  constructor(amount: number) {
-    super(amount, 'CHF');
+  constructor(amount: number, currency: string ) {
+    super(amount, currency);
   }
   times = (multiplier: number): Dollar => {
-    return new Franc(multiplier * this.amount);
+    return Money.franc(multiplier * this.amount);
   };
 }

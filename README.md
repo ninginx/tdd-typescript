@@ -171,3 +171,53 @@
 * [x] FrancとDollarを比較する
 
 #### 個人的な考え
+
+### 第10章 テストに聞いてみる
+#### 目的
+この章が終わる頃には、Moneyを表現するクラスは1つになっていることだろう。
+
+##### 個人の考え(やる前)
+テストに聞いてみるってなんだよ
+
+#### TODO
+* [ ] $5 + 10CHF = $10
+* [x] $5 * 2 = $10
+* [x] amountをprivateにする
+* [x] Dollar sideeffect
+* [ ] Moneyの丸め処理
+* [x] equals()
+* [ ] hashCode
+* [ ] nullとの等価性能比較
+* [ ] 他のオブジェクトとの等価性能比較
+* [x] 5CHF * 2 = 10CHF
+* [ ] **DollarとFrancの重複**
+* [x] equalsの一般化
+* [ ] **timesの一般化**
+* [x] 通貨の概念
+* [x] FrancとDollarを比較する
+
+##### 個人の考え(やったあと)
+* やったこと自体はシンプルで、Factoryメソッドの引数にサブクラスごとに異なる変数を入れてるだけ。これでサブクラスが持つtimesを一般化することができた
+* console.log(constructor.name)がMoneyクラスとDollarクラスの比較になりテストがこける
+
+##### 振り返り
+* サブクラスのtimesメソッドの実装の差異をなくすために、まずはメソッド呼び出しをインライン化し、次にベタ書きの値を変数に置き換えた
+* デバッグの用途のみに使うtoStringメソッドを、テストを書かずに実装した
+* Francの代わりにMoneyを返す試みをしてみる、うごかくか動かないかはテストに聞いてみた
+
+#### TODO
+* [ ] $5 + 10CHF = $10
+* [x] $5 * 2 = $10
+* [x] amountをprivateにする
+* [x] Dollar sideeffect
+* [ ] Moneyの丸め処理
+* [x] equals()
+* [ ] hashCode
+* [ ] nullとの等価性能比較
+* [ ] 他のオブジェクトとの等価性能比較
+* [x] 5CHF * 2 = 10CHF
+* [ ] DollarとFrancの重複
+* [x] equalsの一般化
+* [x] **timesの一般化**
+* [x] 通貨の概念
+* [x] FrancとDollarを比較する

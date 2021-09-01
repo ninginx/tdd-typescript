@@ -1,4 +1,4 @@
-import {  Money, Bank } from '../src/Money';
+import {  Money, Bank, Expression, Sum } from '../src/Money';
 
 describe('多国通貨対応', () => {
 
@@ -39,7 +39,27 @@ describe('多国通貨対応', () => {
     const sum = Money.dollar(5).plus(Money.dollar(5))
     const reduced: Money = bank.reduce(sum, "USD");
     expect(reduced.equals(Money.dollar(10))).toBe(true)
-
   })
 
+  it('test plus return sum', ()=>{
+    const fiveDollar = Money.dollar(5)
+    const result: Expression = fiveDollar.plus(fiveDollar);
+    //todo: cast 変換は消したい
+    const sum: Sum = result as Sum;
+    expect(fiveDollar).toEqual(sum.augend);
+    expect(fiveDollar).toEqual(sum.addend);
+  })
+
+  it('test reduce sum by Bank', ()=>{
+    const sum: Expression = new Sum(Money.dollar(3),Money.dollar(4));
+    const bank: Bank = new Bank();
+    const result: Money = bank.reduce(sum, "USD");
+    expect(Money.dollar(7).equals(result)).toBe(true);
+  })
+
+  it('test reduce Money', ()=>{
+    const bank = new Bank();
+    const result = bank.reduce(Money.dollar(1),"USD");
+    expect(result.equals(Money.dollar(1))).toBe(true);
+  })
 });

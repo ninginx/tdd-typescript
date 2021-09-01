@@ -1,7 +1,8 @@
 import { Sum } from "./sum";
+import { Bank } from "./bank";
 
 export interface Expression {
-  reduce: (to: string) => Money
+  reduce: (bank :Bank, to: string) => Money
 }
 
 export class Money implements Expression {
@@ -35,7 +36,9 @@ export class Money implements Expression {
     return this.currency;
   };
 
-  public reduce = (_to: string): Money => {
-    return this;
+  public reduce = (bank: Bank, to: string): Money => {
+    //return this;
+    const rate = bank.rate(this.currency, to);
+    return new Money(this.amount / rate, to);
   }  
 }

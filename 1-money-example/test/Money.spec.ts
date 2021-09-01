@@ -62,4 +62,16 @@ describe('多国通貨対応', () => {
     const result = bank.reduce(Money.dollar(1),"USD");
     expect(result.equals(Money.dollar(1))).toBe(true);
   })
+
+  it('test reduce money different currency', ()=>{
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(Money.franc(2),"USD");
+    expect(Money.dollar(1).equals(result))
+  })
+
+  it('test identity rate', ()=>{
+    expect(1).toEqual(new Bank().rate("USD","USD"));
+  })
+  
 });

@@ -5,6 +5,10 @@ export class Pair {
     this.from = from;
     this.to = to
   }
+
+  value = (): string => {
+    return `${this.from}:${this.to}`;
+  }
    
   equals = (obj: unknown): boolean => {
     const pair = obj as Pair;

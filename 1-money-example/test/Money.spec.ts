@@ -74,4 +74,32 @@ describe('多国通貨対応', () => {
     expect(1).toEqual(new Bank().rate("USD","USD"));
   })
   
+  it('test mixed addition',()=>{
+    const fiveBucks = Money.dollar(5) as Expression;
+    const tenFranc = Money.franc(10) as Expression;
+    const bank = new Bank();
+    bank.addRate("CHF","USD",2);
+    const result = bank.reduce(fiveBucks.plus(tenFranc) ,"USD");
+    expect(result.equals(Money.dollar(10))).toBe(true);
+  })
+
+  it('test sum plus Money',()=>{
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+    const result = bank.reduce(sum, "USD");
+    expect(Money.dollar(15).equals(result)).toBeTruthy();
+  })
+
+  it('test sum times', ()=>{
+    const fiveBucks = Money.dollar(5);
+    const tenFrancs = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum = new Sum(fiveBucks, tenFrancs).times(2);
+    const result = bank.reduce(sum, "USD");
+    expect(Money.dollar(20).equals(result)).toBeTruthy();
+  })
 });

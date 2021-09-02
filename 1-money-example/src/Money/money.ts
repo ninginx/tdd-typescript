@@ -3,6 +3,9 @@ import { Bank } from "./bank";
 
 export interface Expression {
   reduce: (bank :Bank, to: string) => Money
+  plus: (addend: Expression) => Expression
+  equals: (exp: Expression) => boolean
+  times: (multiplier: number) => Expression
 }
 
 export class Money implements Expression {
@@ -20,16 +23,18 @@ export class Money implements Expression {
   static franc = (amount: number): Money => {
     return new Money(amount,'CHF');
   };
-  equals = ({ amount, currency }: Money): boolean => {
-    return this.amount === amount && this.currency === currency;
+  equals = (exp: Expression): boolean => {
+    // cast変換無くせないの？？？
+    const money = exp as Money;
+    return this.amount === money.amount && this.currency === money.currency;
   };
 
-  times = (multiplier: number): Money => {
+  times = (multiplier: number): Expression => {
     return new Money(multiplier * this.amount, this.currency);
   };
 
-  plus = (addend: Money): Expression =>{
-    return new Sum(this,addend);
+  plus = (addend: Expression): Expression =>{
+    return new Sum(this, addend);
   }
 
   myCurrency = (): string => {
